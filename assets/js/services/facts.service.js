@@ -15,7 +15,7 @@ class FunFactService {
 
 	async loadModel() {
 		try {
-			this.generator = await pipeline('text2text-generation', 'Xenova/LaMini-Flan-T5-78M');
+			this.generator = await pipeline('text2text-generation', 'Xenova/LaMini-Flan-T5-77M');
 			this.isModelLoaded = true;
 		} catch (error) {
 			logError('Error loading Transformers.js model', error);
