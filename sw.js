@@ -17,7 +17,10 @@ if (workbox) {
     { url: 'assets/js/ui/ui.handler.js', revision: '1.0.0' },
     { url: 'assets/icons/icon-192x192.png', revision: '1.0.0' },
     { url: 'assets/icons/icon-512x512.png', revision: '1.0.0' },
-    { url: 'assets/icons/favicon.ico', revision: '1.0.0' }
+    { url: 'assets/icons/favicon.ico', revision: '1.0.0' },
+    { url: 'model/model.json', revision: '1.0.0' },
+    { url: 'model/metadata.json', revision: '1.0.0' },
+    { url: 'model/weights.bin', revision: '1.0.0' }
   ]);
 
   // Cache model files
