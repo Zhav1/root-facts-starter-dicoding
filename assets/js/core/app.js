@@ -132,6 +132,10 @@ class RootFactsApp {
 		try {
 			if (this.camera.isReady() && this.detector.isLoaded()) {
 				const result = await this.detector.predict(this.camera.video);
+				
+				// Show real-time feedback while scanning
+				this.ui.updateHeaderStatus(`Mendeteksi: ${result.className} (${result.confidence}%)`, true);
+
 				if (isValidDetection(result)) {
 					this.stopDetection();
 					this.stopCamera();
