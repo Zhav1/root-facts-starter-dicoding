@@ -78,7 +78,7 @@ class CameraService {
 	}
 
 	isReady() {
-		return !!this.video && this.video.readyState >= 2;
+		return !!this.video && this.video.readyState >= 2 && this.video.videoWidth > 0 && this.video.videoHeight > 0;
 	}
 }
 

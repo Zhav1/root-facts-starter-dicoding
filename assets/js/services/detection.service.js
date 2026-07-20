@@ -9,6 +9,20 @@ class DetectionService {
 
 	async loadModel() {
 		try {
+			await tf.ready();
+			if (navigator.gpu) {
+				try {
+					await tf.setBackend('webgpu');
+					console.log('Using WebGPU backend');
+				} catch (e) {
+					await tf.setBackend('webgl');
+					console.log('Fallback to WebGL backend');
+				}
+			} else {
+				await tf.setBackend('webgl');
+				console.log('Using WebGL backend');
+			}
+			
 			this.model = await tf.loadLayersModel('./model/model.json');
 			const response = await fetch('./model/metadata.json');
 			const metadata = await response.json();
