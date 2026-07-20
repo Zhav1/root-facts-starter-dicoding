@@ -43,15 +43,17 @@ class DetectionService {
 			}
 
 			let probabilities;
-			tf.tidy(() => {
-				let tensor = tf.browser.fromPixels(imageElement);
-				tensor = tf.image.resizeBilinear(tensor, [224, 224]);
-				tensor = tensor.toFloat().div(127.5).sub(1.0);
-				tensor = tensor.expandDims(0);
-				
-				const prediction = this.model.predict(tensor);
-				probabilities = prediction.dataSync();
+			const tensor = tf.tidy(() => {
+				let t = tf.browser.fromPixels(imageElement);
+				t = tf.image.resizeBilinear(t, [224, 224]);
+				t = t.toFloat().div(127.5).sub(1.0);
+				return t.expandDims(0);
 			});
+			
+			const prediction = this.model.predict(tensor);
+			probabilities = await prediction.data();
+			
+			tf.dispose([tensor, prediction]);
 
 			if (!probabilities || probabilities.length === 0) {
 				throw new Error('Hasil prediksi kosong');

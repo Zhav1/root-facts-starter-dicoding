@@ -145,7 +145,7 @@ class RootFactsApp {
 		}
 
 		if (this.isRunning) {
-			const delay = this.config.detectionRetryInterval || 100;
+			const delay = 1000 / (this.camera.fps || 10);
 			setTimeout(() => {
 				if (this.isRunning) {
 					this.currentLoopId = requestAnimationFrame(() => this.detectLoop(loopId));

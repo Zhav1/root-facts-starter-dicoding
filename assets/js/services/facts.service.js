@@ -40,20 +40,21 @@ class FunFactService {
 
 			let prompt = '';
 			if (tone === 'funny') {
-				prompt = `Write a short, funny, and hilarious fun fact about the vegetable: ${sanitizedVegetable}. Keep it under 2 sentences.`;
+				prompt = `Tell a funny joke or fact about ${sanitizedVegetable}.`;
 			} else if (tone === 'professional') {
-				prompt = `Write a short, educational, and professional scientific fact about the vegetable: ${sanitizedVegetable}. Keep it under 2 sentences.`;
+				prompt = `Explain a scientific fact about the vegetable ${sanitizedVegetable}.`;
 			} else if (tone === 'casual') {
-				prompt = `Write a friendly and casual short fact about the vegetable: ${sanitizedVegetable}. Keep it under 2 sentences.`;
+				prompt = `Tell me a fun fact about ${sanitizedVegetable}.`;
 			} else {
-				prompt = `Write a short interesting fun fact about the vegetable: ${sanitizedVegetable}. Keep it under 2 sentences.`;
+				prompt = `Provide a fun fact about ${sanitizedVegetable}.`;
 			}
 
 			const result = await this.generator(prompt, {
-				max_new_tokens: 60,
-				temperature: 0.7,
+				max_new_tokens: 50,
+				temperature: 0.5,
 				do_sample: true,
-				top_p: 0.9
+				top_k: 50,
+				repetition_penalty: 1.2
 			});
 
 			const generatedText = result[0]?.generated_text || `Fakta menarik tentang ${sanitizedVegetable} tidak dapat dihasilkan.`;
