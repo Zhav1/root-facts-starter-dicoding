@@ -1,1 +1,1 @@
-APP_URL=https://root-facts-starter-qhanakin.netlify.app
+APP_URL=https://root-facts-starter.netlify.app
