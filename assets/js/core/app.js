@@ -1,6 +1,6 @@
 import UIHandler from '../ui/ui.handler.js';
 import { APP_CONFIG } from './config.js';
-import { logError, isValidDetection } from './utils.js';
+import { logError, isValidDetection, createDelay } from './utils.js';
 import CameraService from '../services/camera.service.js';
 import DetectionService from '../services/detection.service.js';
 import FunFactService from '../services/facts.service.js';
@@ -137,6 +137,7 @@ class RootFactsApp {
 				this.ui.updateHeaderStatus(`Mendeteksi: ${result.className} (${result.confidence}%)`, true);
 
 				if (isValidDetection(result)) {
+					await createDelay(this.config.analyzingDelay);
 					this.stopDetection();
 					this.stopCamera();
 					this.ui.showResults(result, null);
