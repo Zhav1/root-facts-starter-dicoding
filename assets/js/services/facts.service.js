@@ -62,6 +62,7 @@ class FunFactService {
 				funFact: generatedText.trim()
 			};
 		} catch (error) {
+			console.log('FunFact error:', error);
 			logError('Error generating fun fact', error);
 			throw new Error(`Failed to generate fun fact: ${error.message}`);
 		} finally {

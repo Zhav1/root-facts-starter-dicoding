@@ -103,13 +103,13 @@ class UIHandler {
 	updateCameraUI(isActive) {
 		if (isActive) {
 			this.btnToggle.classList.add('scanning');
-			this.btnToggleIcon.innerHTML = '<i data-lucide="square" width="24" height="24"></i>';
+			this.btnToggle.innerHTML = '<i data-lucide="square" width="24" height="24"></i>';
 			if (this.cameraOverlay) this.cameraOverlay.classList.add('active');
 			if (this.cameraPlaceholder) hideElement(this.cameraPlaceholder);
 			this.updateHeaderStatus('Scanning...', true);
 		} else {
 			this.btnToggle.classList.remove('scanning');
-			this.btnToggleIcon.innerHTML = '<i data-lucide="scan-line" width="24" height="24"></i>';
+			this.btnToggle.innerHTML = '<i data-lucide="scan-line" width="24" height="24"></i>';
 			if (this.cameraOverlay) this.cameraOverlay.classList.remove('active');
 			if (this.cameraPlaceholder) showElement(this.cameraPlaceholder);
 			this.updateHeaderStatus('Siap', false);

@@ -53,6 +53,7 @@ class CameraService {
 				await this.video.play();
 			}
 		} catch (error) {
+			console.log('Camera restart error:', error);
 			logError('Gagal memulai kamera', error);
 			const errorMessage = getCameraErrorMessage(error);
 			throw new Error(errorMessage);
