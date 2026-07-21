@@ -15,7 +15,7 @@ class FunFactService {
 
 	async loadModel() {
 		try {
-			this.generator = await pipeline('text2text-generation', 'Xenova/flan-t5-small');
+			this.generator = await pipeline('text2text-generation', 'Xenova/LaMini-Flan-T5-77M');
 			this.isModelLoaded = true;
 		} catch (error) {
 			logError('Error loading Transformers.js model', error);
@@ -39,14 +39,10 @@ class FunFactService {
 			this.isGenerating = true;
 
 			let prompt = '';
-			if (tone === 'funny') {
-				prompt = `Tell a funny joke or fact about ${sanitizedVegetable}.`;
-			} else if (tone === 'professional') {
-				prompt = `Explain a scientific fact about the vegetable ${sanitizedVegetable}.`;
-			} else if (tone === 'casual') {
-				prompt = `Tell me a fun fact about ${sanitizedVegetable}.`;
+			if (tone !== 'normal') {
+				prompt = `Describe vegetable ${sanitizedVegetable} in ${tone} way with one sentences.`
 			} else {
-				prompt = `Provide a fun fact about ${sanitizedVegetable}.`;
+				prompt = `Describe vegetable ${sanitizedVegetable} with one sentences.`
 			}
 
 			const result = await this.generator(prompt, {
